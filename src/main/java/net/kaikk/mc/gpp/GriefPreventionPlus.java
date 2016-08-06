@@ -197,6 +197,12 @@ public class GriefPreventionPlus extends JavaPlugin {
 		if (GriefPreventionPlus.getInstance().config.claims_expirationDays != 0 ||  GriefPreventionPlus.getInstance().config.claims_chestClaimExpirationDays != 0) {
 			new CleanupUnusedClaimsTask(this).runTaskTimer(this, 200L, 4L);
 		}
+
+		//register claim placeholders if MVdWPlaceholderAPI plugin is found
+		if (getServer().getPluginManager().isPluginEnabled("MVdWPlaceholderAPI")) {
+			PlaceHolders placeHolders = new PlaceHolders(this);
+			placeHolders.initPlaceHolders();
+		}
 		
 		addLogEntry("Boot finished.");
 	}
